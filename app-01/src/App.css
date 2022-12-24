@@ -2,6 +2,27 @@
   text-align: center;
 }
 
+img{
+  width: 100%;
+}
+
+section{
+  background-color: green;
+  margin: 20px;
+  padding: 10px;
+}
+
+section h2{
+  color: brown;
+  font-size: 3em;
+}
+
+section p{
+  color: brown;
+  font-size: 1.5em;
+  font-weight: 900;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

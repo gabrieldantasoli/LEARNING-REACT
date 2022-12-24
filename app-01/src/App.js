@@ -1,12 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
+import Shrek from './componentes/Shrek'
+import Arcane from './componentes/arcane'
+import Beliver from './componentes/believer'
 
 export default function App() {
+
   return (
-    <div>
-      <h1>REACT</h1>
-      <p>rect app</p>
-    </div>
+    <>
+      <Shrek/>
+      <Arcane/>
+      <Beliver/>
+    </>
   );
 }
 
