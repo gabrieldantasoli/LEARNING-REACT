@@ -6,7 +6,7 @@ export default function believer() {
         <section>
             <h2>believer</h2>
             <p>Believer is my favorite music from Imagine Dragons playlist origins.</p>
-            <img src={img1}></img>
+            <img src={img1} alt=""></img>
         </section>
     )
 }
