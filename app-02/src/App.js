@@ -6,6 +6,8 @@ import Numero from './componentes/Numero'
 import Clicable from './componentes/clicable'
 import Light from './componentes/controls';
 import Form from './componentes/form'
+import Nota from './componentes/Nota'
+import Notas from './componentes/Notas'
 
 function App() {
   const [num,setNum] = useState(10);
@@ -31,6 +33,20 @@ function App() {
     (c) => <li>{c}</li>
   )
 
+  const [form,setForm] = useState({"nome": "","curso": "","ano": ""});
+  const handFormchange = (e) => {
+    if (e.target.getAttribute('name') === 'nome') {
+      setForm({"nome": e.target.value,"curso": form.curso,"ano":form.ano});
+    } else if (e.target.getAttribute('name') === 'curso') {
+      setForm({"nome": form.nome,"curso": e.target.value,"ano":form.ano})
+    } else if (e.target.getAttribute('name') === "ano") {
+      setForm({"nome": form.nome,"curso": form.curso,"ano":e.target.value})
+    }
+    
+  }
+
+  const [notas,setNotas] = useState({"n1":0,"n2":0,"n3":0,"n4":0});
+
   return (
     <>
       <p>Valor do state num = {num}</p>
@@ -51,6 +67,27 @@ function App() {
       <p>{log?'logOut':'logIn'}</p>
       <ul>{listaNumbers}</ul>
       <Form name={name} setName={setName}></Form>
+      <hr/>
+
+      <label>Nome</label>
+      <input type="text" name="nome" value={form.nome} onChange={(e) => handFormchange(e)}/><br/>
+
+      <label>curso</label>
+      <input type="text" name="curso" value={form.curso} onChange={(e) => handFormchange(e)}/><br/>
+
+      <label>ano</label>
+      <input type="text" name="ano" value={form.ano} onChange={(e) => handFormchange(e)}/><br/>
+
+      <p>Nome digitado : {form.nome}</p>
+      <p>curso digitado : {form.curso}</p>
+      <p>Ano digitado : {form.ano}</p>
+      <hr/>
+
+      <Nota num={1} notas={notas} setNotas={setNotas}></Nota>
+      <Nota num={2} notas={notas} setNotas={setNotas}></Nota>
+      <Nota num={3} notas={notas} setNotas={setNotas}></Nota>
+      <Nota num={4} notas={notas} setNotas={setNotas}></Nota>
+      <Notas n={notas} setn={setNotas}></Notas>
     </>
   );
 }
