@@ -2,13 +2,17 @@ import React from "react";
 
 export default class Carro extends React.Component {
     constructor(props) {
+        // permitir o uso de props
         super(props)
+
         this.ano =2018
         this.capacity = 5
+        
         this.state = {
             ligado: false,
             vel: 0,
         }
+        this.ld = this.change.bind(this)
     }
 
     change() {
@@ -51,7 +55,7 @@ export default class Carro extends React.Component {
                 <p>Capacity = {this.capacity}</p>
                 <p>Ligado: {this.state.ligado ? "Sim" : "Não"}</p>
                 <p>Velocidade Atual = {this.state.vel}</p>
-                <button onClick={() => this.change()}>{this.state.ligado ? "Desligar" : "Ligar"}</button>
+                <button onClick={this.ld}>{this.state.ligado ? "Desligar" : "Ligar"}</button>
                 <button onClick={() => this.acelerar()}>acelerar</button>
                 <button onClick={() => this.freiar()}>freiar</button>
             </>

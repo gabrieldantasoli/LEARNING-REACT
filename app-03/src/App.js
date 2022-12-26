@@ -3,6 +3,9 @@ import Caixa from './componentes/caixa'
 import Canal from './componentes/canal'
 import Classe from './componentes/classe'
 import Carro from './componentes/carro'
+import BaseClasse from './componentes/BaseClasse'
+import Info from './componentes/info';
+import GLobais from './componentes/Globais';
 import './App.css';
 
 function App() {
@@ -35,8 +38,15 @@ function App() {
 
       <Classe name="gabriel dantas de oliveira"></Classe>
       <Carro fator={15} car="onix" cor="branco"/>
+      <hr/>
 
+      <BaseClasse></BaseClasse>
+      <hr/>
 
+      <p>{"nome : "+ GLobais.nome}</p>
+      <p>{"profissao : "+ GLobais.prof}</p>
+      <p>{"ano : "+ GLobais.ano}</p>
+      <Info/>
     </>
   );
 }
