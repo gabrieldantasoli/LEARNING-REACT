@@ -83,10 +83,10 @@ function App() {
       <p>Ano digitado : {form.ano}</p>
       <hr/>
 
-      <Nota num={1} notas={notas} setNotas={setNotas}></Nota>
-      <Nota num={2} notas={notas} setNotas={setNotas}></Nota>
-      <Nota num={3} notas={notas} setNotas={setNotas}></Nota>
-      <Nota num={4} notas={notas} setNotas={setNotas}></Nota>
+      <Nota num={1} n={notas} setNotas={setNotas}></Nota>
+      <Nota num={2} n={notas} setNotas={setNotas}></Nota>
+      <Nota num={3} n={notas} setNotas={setNotas}></Nota>
+      <Nota num={4} n={notas} setNotas={setNotas}></Nota>
       <Notas n={notas} setn={setNotas}></Notas>
     </>
   );
