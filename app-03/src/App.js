@@ -6,6 +6,8 @@ import Carro from './componentes/carro'
 import BaseClasse from './componentes/BaseClasse'
 import Info from './componentes/info';
 import GLobais from './componentes/Globais';
+import page1 from './componentes/page1';
+import page2 from './componentes/page2';
 import './App.css';
 
 function App() {
@@ -14,14 +16,42 @@ function App() {
 
   useEffect(
     () => {
-      console.log(`pagina atualisada ` + cont + ` vezes!`)
-      document.title = "contagem " + cont
+      const url = window.location.href;
+      const res = url.split('?');
+      setPage(res[1]);
+      alert("ok")
     }
   )
 
   localStorage.setItem("nome","gabriel");
   localStorage.getItem("nome");
   localStorage.removeItem("nome");
+
+
+  const [page,setPage] = useState(0)
+
+  const linksPages = (p) => {
+    if (p===1) {
+      window.open('http://localhost:3000?1','_self')
+    }else if (p===2){
+      window.open('http://localhost:3000?2','_self')
+    }
+  }
+
+  const retornarPage = () => {
+    if (page === 1) {
+      return <page1/>
+    } else if (page === 2) {
+      return <page2/>
+    } else {
+      return  <div>
+                <button onClick={() => linksPages(1)}>PAge 1</button>
+                <button onClick={() => linksPages(2)}>PAge 2</button>
+              </div>
+    }
+  }
+
+
 
   return (
     <>
@@ -47,6 +77,8 @@ function App() {
       <p>{"profissao : "+ GLobais.prof}</p>
       <p>{"ano : "+ GLobais.ano}</p>
       <Info/>
+
+      {retornarPage()}
     </>
   );
 }
