@@ -22,7 +22,7 @@ export default {
     getHomeList: async () => {
         return [
             {
-                slug: 'Originais',
+                slug: 'Originals',
                 title: 'Originais do Netflix',
                 items: await basicFetch(`/discover/tv?with_network=213&language=pt-BR&api_key=${API_Key}`)
             },
@@ -62,5 +62,27 @@ export default {
                 items: await basicFetch(`/discover/movie?with_genres=99&language=pt-BR&api_key=${API_Key}`)
             }
         ]
+    },
+
+    getMovieInfo: async (movieId, type) => {
+        let info = {};
+
+        if (movieId) {
+            switch (type) {
+                case 'movie':
+                    info = await basicFetch(`/movie/${movieId}?language=pt-BR&api_key=${API_Key}`);
+                    break;
+                case 'tv':
+//https://api.themoviedb.org/3/tv/208711?language=pt-BR&api_key=4ee15f1b9e5abf4c8092f1df36eacfa6
+                    info = await basicFetch(`/tv/${movieId}?language=pt-BR&api_key=${API_Key}`);
+                    console.log(info);
+                    break;
+                default:
+                    info = null;
+                    break;
+            }
+        }
+
+        return info;
     }
 }
