@@ -7,6 +7,7 @@ import './App.css'
 //Importando componentes usado no APP
 import MovieRow from "./components/movieRow";
 import FeaturedMovie from "./components/FeaturedMovie";
+import Header from "./components/Header";
 
 export default function App(){
   const [featureData,setFeatureData] = useState(null);
@@ -31,6 +32,9 @@ export default function App(){
 
   return (
     <div className="page">
+
+      <Header />
+
       {featureData && 
         <FeaturedMovie item={featureData} />
       }
