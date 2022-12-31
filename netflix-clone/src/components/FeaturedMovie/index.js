@@ -20,7 +20,7 @@ export default ({item}) => {
                         <div className="featured--points">{item.vote_average} points</div>
                         <div className="featured--year">{firstDate.getFullYear()}</div>
                         <div className="featured--seasons">{item.number_of_seasons} Season{item.number_of_seasons != 1 ? 's' : ''}</div>
-                        <div className="featured--description">{item.overview}</div>
+                        <div className="featured--description">{item.overview.length > 150 ? item.overview.substring(0,150) + "..." : item.overview}</div>
                         <div className="featured--buttons">
                             <a href={`/watch/${item.id}`}>Assistir</a>
                             <a href={`/list/add/${item.id}`}>Minha Lista</a>

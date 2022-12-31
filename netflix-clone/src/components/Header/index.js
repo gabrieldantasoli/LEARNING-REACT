@@ -3,10 +3,10 @@ import React from 'react';
 //IMPORTANDO O CSS
 import './Header.css'
 
-export default () => {
+export default (props) => {
 
     return (
-        <header>
+        <header className={props.black ? 'black' : ''}>
             <div className='header--logo'>
                 <a href="/">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/300px-Netflix_2015_logo.svg.png" />
