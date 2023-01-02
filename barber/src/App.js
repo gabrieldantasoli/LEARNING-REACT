@@ -1,40 +1,38 @@
-import React, { useState , useEffect , useMemo} from 'react';
-import './App.css';
-import Welcome from './components/comp';
-import Equipe from './components/equipe';
-import ClassComponent from './components/classComponent'
-import Canvas from './components/canvas';
-import Form from './components/Form'
-import Canvas2 from './components/canvas2';
+import React, { useState , useEffect } from 'react';
+import './App.css'
+import All from './all'
 
 export default function App() {
-  const [name , setName] = useState("Gabriel");
-  let equipe = ["Gabriel","Samuel","André"];
+  const [nutri, setNutri] = useState([]);
 
   useEffect(() => {
-    alert("Changed")
-  } , [name])
+    function loadAPI() {
+      fetch('https://sujeitoprogramador.com/rn-api/?api=posts')
+      .then((r) => r.json())
+      .then((json) => {
+        setNutri(json);
+      })
+    }
 
-  //const totalTarefas = useMemo(() => tarefas.length , [tarefas]);
-  // processamento
+    loadAPI();
+  } , []);
 
   return (
-    <>
-      <h1>Olá , Mundo.</h1>
-      <Welcome name={name} setName={setName}/>
-      <Equipe equipe={equipe}/>
-      <hr />
+    <div className='conteiner'>
+      <header>
+        <strong>React Nutri</strong>
+      </header>
 
-      <h2>Class components !</h2>
-      <ClassComponent name="Gabriel"/>
-      <hr />
-
-      <Canvas/>
-      <hr />
-
-      <Form></Form>
-
-      <Canvas2 />
-    </>
+      {nutri.map((item) => {
+        return(
+          <article key={item.id} className="post" >
+            <strong className='titulo'>{item.titulo}</strong>
+            <img src={item.capa} alt={item.titulo} className="capa"/>
+            <p className='subtitulo'>{item.subtitulo}</p>
+            <a className='botao'>Acessar</a>
+          </article>
+        );
+      })};
+    </div>
   );
 }
