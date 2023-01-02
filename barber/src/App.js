@@ -1,9 +1,10 @@
-import React, { useState , useEffect } from 'react';
-import './App.css'
-import All from './all'
+//import React, { useState , useEffect } from 'react';
+//import './App.css'
+//import All from './all'
+import Routes from './routes';
 
 export default function App() {
-  const [nutri, setNutri] = useState([]);
+  /*const [nutri, setNutri] = useState([]);
 
   useEffect(() => {
     function loadAPI() {
@@ -15,24 +16,9 @@ export default function App() {
     }
 
     loadAPI();
-  } , []);
+  } , []);*/
 
   return (
-    <div className='conteiner'>
-      <header>
-        <strong>React Nutri</strong>
-      </header>
-
-      {nutri.map((item) => {
-        return(
-          <article key={item.id} className="post" >
-            <strong className='titulo'>{item.titulo}</strong>
-            <img src={item.capa} alt={item.titulo} className="capa"/>
-            <p className='subtitulo'>{item.subtitulo}</p>
-            <a className='botao'>Acessar</a>
-          </article>
-        );
-      })};
-    </div>
+    <Routes />
   );
 }
