@@ -1,0 +1,64 @@
+h1 {
+    font-size: 40px;
+    margin: 15px 0;
+    color: #111;
+}
+
+#favoritos > div {
+    display: flex;
+    margin: auto;
+    width: 100%;
+    max-width: 700px;
+    justify-content: space-between;
+    padding: 10px 0;
+    align-items: center;
+}
+
+#favoritos > div > p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #444;
+    text-align: left;
+}
+
+#favoritos > div > div > button {
+    font-size: 15px;
+    font-weight: bold;
+    color: #444;
+    background-color: transparent;
+    border: 2px solid #444;
+    padding: 7px;
+    border-radius: 7px;
+    margin-left: 30px;
+    transition: 0.5s;
+}
+
+#favoritos > div > div > button:hover {
+    background-color: #444;
+    color: #fff;
+}
+
+.link1 {
+    color: brown;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.link1:hover{
+    text-decoration: underline;
+}
+
+#favoritos > div:nth-child(odd) {
+    padding: 10px;
+    background-color: #ddd;
+}
+
+#favoritos > div:nth-child(even) {
+    padding: 10px;
+    background-color: #eee;
+}
+
+#favoritos > div:hover {
+    background-color: #bbb;
+}
