@@ -9,16 +9,52 @@ export default function Filme() {
 
     const [filme , setFilme] = useState([]);
     const [loading,setLoading] = useState(true);
+    const [marked,setMarked] = useState(false);
     
     useEffect(() => {
         async function loadFilme() {
             const response = await API.get(`r-api/?api=filmes/${id}`)
             setFilme(response.data);
             setLoading(false);
+
+            const minhaLista =  JSON.parse(localStorage.getItem('filmes')) || []; 
+
+            for (let f of minhaLista) {
+                if (f.id === response.data.id) {
+                    setMarked(true);
+                    break;
+                }
+            }
         }
 
         loadFilme();
-    },[id]);
+    },[id,marked]);
+
+    function salvarFilme() {
+        const minhaLista =localStorage.getItem('filmes') ;
+        const Filmes = JSON.parse(minhaLista) || []; 
+
+        const hasFilme = Filmes.some((filmeSalvo) => filmeSalvo.id === filme.id);
+
+        if (!hasFilme) {
+            Filmes.push(filme);
+            localStorage.setItem('filmes',JSON.stringify(Filmes));
+            setMarked(true)
+        } 
+    }
+
+    function removerFilme() {
+        const minhaLista =localStorage.getItem('filmes') ;
+        const Filmes = JSON.parse(minhaLista) || []; 
+
+        const hasFilme = Filmes.some((filmeSalvo) => filmeSalvo.id === filme.id);
+
+        if (hasFilme) {
+            setMarked(false);
+            Filmes.pop(filme);
+            localStorage.setItem('filmes',JSON.stringify(Filmes));
+        }
+    }
 
     if (loading) {
         return(
@@ -36,7 +72,7 @@ export default function Filme() {
             <p>{filme.sinopse}</p>
 
             <div> 
-                <button onClick={() => {}}> Salvar</button>
+                <button onClick={marked ? removerFilme : salvarFilme} className={marked === true ? 'fill' : ''}>{marked ? "Remover" : "Salvar"}</button>
                 <button>
                     <a target="blank" href={`https://youtube.com/results?search_query=${filme.nome} Trailer`} >Trailer</a>
                 </button>
