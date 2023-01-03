@@ -1,8 +1,11 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import { initializeApp } from "firebase/app";
-import { collection, getDocs, getFirestore , addDoc , doc, deleteDoc } from "firebase/firestore";
 
+//Bibliotecas usadas pelo firebase
+import { initializeApp } from "firebase/app";
+import { collection, getDocs, getFirestore , addDoc , doc, deleteDoc , updateDoc } from "firebase/firestore";
+
+// Inicialisando o firebase
 const firebaseApp = initializeApp({
   apiKey: "AIzaSyC-5lKTX2NBdsOalJAY1sN-yhS-P9rgHYk",
   authDomain: "curso-3e4e9.firebaseapp.com",
@@ -18,11 +21,15 @@ function App() {
   const [titulo, setTitulo] = useState('');
   const [nome, setNome] = useState('');
   const [users, setUsers] = useState([]);
-
+  
+  // Obtendo database
   const database = getFirestore(firebaseApp);
+  // Pegqando uma colecao no database
   const postsCollectionRef = collection(database, "posts");
 
   useEffect(() => {
+    
+    // Pegando documentos da collection e salvando no users
     const getPosts = async () => {
       const data = await getDocs(postsCollectionRef);
       let users = [];
@@ -36,10 +43,15 @@ function App() {
   },[]);
 
   async function handleAdd() {
+
+    // Add starts here
     const user = await addDoc(postsCollectionRef, {
       nome,
       titulo,
     });
+    // Add ends here
+
+    //essa parte atualisa o setUsers
     const data = await getDocs(postsCollectionRef);
     let users = [];
     data.docs.map((doc) => {
@@ -51,8 +63,35 @@ function App() {
   }
 
   async function handleDelete(id) {
+
+    // Delete starts here
     const userDoc = doc(database , 'posts' , id);
     await deleteDoc(userDoc);
+    // Delete ends here
+
+    // essa parte atualisa o setUsers
+    const data = await getDocs(postsCollectionRef);
+    let users = [];
+    data.docs.map((doc) => {
+      users.push({"nome": doc.data().nome, "titulo": doc.data().titulo, "id": doc.id})
+    });
+    setUsers(users);
+  }
+
+  async function handleUpdate(id) {
+    
+    // Update starts here
+    const novoNome = prompt('Novo Nome : ');
+    const novoTitulo = prompt('Novo Titulo : ');
+    const userDoc = doc(database, 'posts', id);
+
+    await updateDoc(userDoc ,{
+      nome: novoNome,
+      titulo: novoTitulo
+    });
+    // Update ends here
+
+    // essa parte atualisa o setUsers
     const data = await getDocs(postsCollectionRef);
     let users = [];
     data.docs.map((doc) => {
@@ -75,6 +114,7 @@ function App() {
               <p>{item.nome}</p>
               <p>{item.titulo}</p>
               <button onClick={() => handleDelete(item.id)}>Delete</button>
+              <button onClick={() => handleUpdate(item.id)}>Update</button>
             </div>
           )
         })}
