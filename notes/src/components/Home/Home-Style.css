@@ -1,0 +1,24 @@
+#yourNotes {
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
+    margin-top: 50px;
+    position: relative;
+    border: 4px solid #175A73;
+    border-radius: 0 0 15px 15px;
+    padding: 10px;
+    z-index: 1;
+    min-height: 250px;
+}
+
+#yourNotes .desc {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 15px;
+    position: absolute;
+    top: -44px;
+    left: -4px;
+    background-color: #175A73;
+    border-radius: 10px 10px 0 0 ;
+}
