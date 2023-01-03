@@ -1,0 +1,73 @@
+.App {
+  text-align: center;
+}
+
+.conteiner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
+  background-color: #ddd;
+  padding: 10px;
+}
+
+.conteiner label {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.conteiner input[type="text"] {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 15px;
+}
+
+.conteiner textarea {
+  width: 90%;
+  max-width: 600px;
+  min-height: 100px;
+  margin-bottom: 15px;
+}
+
+.conteiner button {
+  color: #333;
+  border: 3px solid #333;
+  padding: 5px 10px;
+  font-size: 18px;
+  border-radius: 8px;
+}
+
+.cadastrados {
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
+}
+
+.cadastrados div{
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+}
+
+.cadastrados div p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.cadastrados div:nth-child(odd) {
+  background-color: #ddd;
+}
+
+.cadastrados div:nth-child(even) {
+  background-color: #eee;
+}
+
+.cadastrados div:hover {
+  background-color: #ccc;
+}
