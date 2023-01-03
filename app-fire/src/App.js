@@ -1,7 +1,7 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import { initializeApp } from "firebase/app";
-import { collection, getDocs, getFirestore , addDoc } from "firebase/firestore";
+import { collection, getDocs, getFirestore , addDoc , doc, deleteDoc } from "firebase/firestore";
 
 const firebaseApp = initializeApp({
   apiKey: "AIzaSyC-5lKTX2NBdsOalJAY1sN-yhS-P9rgHYk",
@@ -27,7 +27,7 @@ function App() {
       const data = await getDocs(postsCollectionRef);
       let users = [];
       data.docs.map((doc) => {
-        users.push({"nome": doc.data().nome, "titulo": doc.data().titulo})
+        users.push({"nome": doc.data().nome, "titulo": doc.data().titulo, "id": doc.id})
       });
       setUsers(users);
     }
@@ -41,14 +41,27 @@ function App() {
       titulo,
     });
     const data = await getDocs(postsCollectionRef);
-      let users = [];
-      data.docs.map((doc) => {
-        users.push({"nome": doc.data().nome, "titulo": doc.data().titulo})
-      });
-      setUsers(users);
-      setNome("");
-      setTitulo("");
+    let users = [];
+    data.docs.map((doc) => {
+      users.push({"nome": doc.data().nome, "titulo": doc.data().titulo, "id": doc.id})
+    });
+    setUsers(users);
+    setNome("");
+    setTitulo("");
   }
+
+  async function handleDelete(id) {
+    const userDoc = doc(database , 'posts' , id);
+    await deleteDoc(userDoc);
+    const data = await getDocs(postsCollectionRef);
+    let users = [];
+    data.docs.map((doc) => {
+      users.push({"nome": doc.data().nome, "titulo": doc.data().titulo, "id": doc.id})
+    });
+    setUsers(users);
+  }
+
+
 
   return (
     <div className="App">
@@ -61,6 +74,7 @@ function App() {
             <div>
               <p>{item.nome}</p>
               <p>{item.titulo}</p>
+              <button onClick={() => handleDelete(item.id)}>Delete</button>
             </div>
           )
         })}

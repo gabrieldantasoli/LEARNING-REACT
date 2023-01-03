@@ -47,10 +47,11 @@
 }
 
 .cadastrados div{
+  padding: 0 10px;
   width: 100%;
   max-width: 600px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   margin: auto;
 }
@@ -70,4 +71,17 @@
 
 .cadastrados div:hover {
   background-color: #ccc;
+}
+
+.cadastrados button {
+  font-size: 14px;
+  color: red;
+  border: 2px solid red;
+  border-radius: 7px;
+  transition: 0.5s;
+}
+
+.cadastrados button:hover {
+  background-color: red;
+  color: #fff;
 }
