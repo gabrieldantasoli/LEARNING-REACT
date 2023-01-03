@@ -76,6 +76,7 @@ function App() {
       users.push({"nome": doc.data().nome, "titulo": doc.data().titulo, "id": doc.id})
     });
     setUsers(users);
+    alert(Objects)
   }
 
   async function handleUpdate(id) {

@@ -6,7 +6,7 @@ export default () => {
     return(
         <div>
             <Header where="/about"/>
-            shahsah
+            <h1>Deveria haver uma seção sobre o projeto aqui ! FIQUEI COM PREGUIÇA.</h1>
         </div>
     )
 }
