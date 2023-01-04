@@ -3,6 +3,9 @@ import Add from '../../images/plus.png'
 import './Home-Style.css';
 import Header from "../Header"
 
+// AUtenticacao
+import 'firebase/auth';
+
 // Bibliotecas useState e useEffect
 import { useEffect, useState } from 'react';
 
@@ -118,6 +121,14 @@ export default () => {
         setObjects(objects);
     }
 
+    // Autenticacao
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+
+    async function cadastrarUser() {
+        await firebaseApp
+    }
+
     return(
         <div>
             <Header where="/"/>
@@ -153,7 +164,10 @@ export default () => {
                         )
                     })}
                 </div>
-            </div>
+            </div>        
+            
+
+           
         </div>
     )
 }
