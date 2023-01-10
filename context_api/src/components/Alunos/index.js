@@ -1,10 +1,10 @@
 import Aluno from "../Aluno"
 
-export default (props) => {
+export default () => {
     return(
         <div>
             <h2>Alunos</h2>
-            <Aluno name={props.name} setName={props.setName}/>
+            <Aluno />
         </div>
     )
 }

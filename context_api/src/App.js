@@ -2,15 +2,17 @@ import Alunos from './components/Alunos';
 import './App.css';
 import { useState } from 'react';
 
-function App() {
+import UserProvider from './contexts/user';
 
-  const [name, setName] = useState("gabriel")
+function App() {
   return (
-    <div className="App">
-      <h1>Escola</h1><hr />
-      
-      <Alunos name={name} setName={setName}/>
-    </div>
+    <UserProvider>
+      <div className="App">
+        <h1>Escola</h1><hr />
+        
+        <Alunos />
+      </div>
+    </UserProvider>
   );
 }
 
